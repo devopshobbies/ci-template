@@ -6,19 +6,20 @@ import (
 
 func TestTableCalculate(t *testing.T) {
 	var tests = []struct {
-		input    int
+		input1   int
+		input2   int
 		expected int
 	}{
-		{2, 4},
-		{-1, 1},
-		{0, 2},
-		{-5, -3},
-		{99999, 100001},
+		{2, 2, 4},
+		{-1, 1, 0},
+		{0, -1, -1},
+		{-5, 6, 1},
+		{99999, 3, 100002},
 	}
 
 	for _, test := range tests {
-		if output := Calculate(test.input); output != test.expected {
-			t.Error("Test Failed: {} inputted, {} expected, recieved: {}", test.input, test.expected, output)
+		if output := Calculate(test.input1, test.input2); output != test.expected {
+			t.Error("Test Failed: {} and {} inputted, {} expected, recieved: {}", test.input1, test.input2, test.expected, output)
 		}
 	}
 }

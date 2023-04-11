@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"log"
 )
 
-// Calculate returns x + 2.
-func Calculate(x int) (result int) {
-	result = x + 2
+// Calculate returns x + y.
+func Calculate(x, y int) (result int) {
+	result = x + y
 	return result
 }
 
 func main() {
-	fmt.Println("Hello World")
+	log.Println("We are DevOps Hobbies :)")
 }
