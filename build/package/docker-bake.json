@@ -10,7 +10,7 @@
         "simple-ci": {
             "dockerfile": "build/package/Dockerfile",
             "tags": [
-                "ghcr.io/mohammadne/simple-ci"
+                "ghcr.io/devopshobbies/simple-ci"
             ]
         }
     }
