@@ -1,0 +1,16 @@
+compile:
+  stage: compile
+  image: "${GO_IMAGE}"
+  script: ['./.gitlab/ci/scripts/compile.sh']
+  artifacts:
+    name: "${DEPLOYMENT_NAME}-${CI_COMMIT_REF_SLUG}"
+    paths:
+      - ./app
+    expire_in: 1 week
+  cache:
+    policy: pull-push
+    key:
+      files:
+        - go.sum
+    paths:
+      - .cache/

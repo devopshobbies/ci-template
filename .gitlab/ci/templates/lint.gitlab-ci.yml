@@ -1,0 +1,7 @@
+---
+lint:
+  stage: lint
+  image: "${GO_IMAGE}"
+  script:
+    - ./.gitlab/ci/scripts/lint.sh
+  allow_failure: true

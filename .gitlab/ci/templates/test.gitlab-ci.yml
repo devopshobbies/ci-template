@@ -1,0 +1,13 @@
+test:
+  stage: test
+  image: "${GO_IMAGE}"
+  coverage: '/total:\s*\(statements\)\s*([\d.]+)%/'
+  script:
+    - ./.gitlab/ci/scripts/test.sh
+  cache:
+    policy: pull
+    key:
+      files:
+        - go.sum
+    paths:
+      - .cache/

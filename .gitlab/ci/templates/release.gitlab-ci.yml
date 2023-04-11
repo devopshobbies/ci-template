@@ -1,0 +1,12 @@
+---
+release:
+  stage: release
+  image: docker:latest
+  script:
+    - ./.gitlab/ci/scripts/release.sh
+  only:
+    - tags
+    - branches
+  when: manual
+  dependencies:
+    - build
