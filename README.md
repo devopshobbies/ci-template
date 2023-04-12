@@ -16,8 +16,8 @@ each CI/CD techniques are in a different branch, currenlty the following CI/CD t
 
 - docker pull jenkins
 - docker run -d -p [your port here]:8080 -v [your host path here]:/var/jenkins_home:z -t jenkins
-- Install s plugins.
-- Install Jenkins' go plugin.
+- Install recommended plugins.
+- Install Jenkin's `go`, `Credentials Binding` plugins.
 
 ## Setup The Job
 

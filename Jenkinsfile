@@ -1,4 +1,5 @@
 // https://mattermost.com/blog/how-to-set-up-a-jenkins-ci-cd-pipeline-for-your-golang-app/
+// https://www.codurance.com/publications/2019/05/30/accessing-and-dumping-jenkins-credentials
 
 pipeline {
     // Run on an agent where we want to use Go
@@ -65,6 +66,7 @@ pipeline {
             steps {
                 echo 'RELEASE EXECUTION STARTED'
 
+                // you have to create credentials of the type 'usernamePassword' for dockerhub
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                     sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
                     sh 'docker push devopshobbies/simple-ci'
