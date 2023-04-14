@@ -1,0 +1,17 @@
+{
+    "group": {
+        "default": {
+            "targets": [
+                "your-app-name"
+            ]
+        }
+    },
+    "target": {
+        "your-app-name": {
+            "dockerfile": "build/package/Dockerfile",
+            "tags": [
+                "ghcr.io/devopshobbies/your-app-name"
+            ]
+        }
+    }
+}
