@@ -26,4 +26,4 @@ In order to use these CI tools, you have to paste them into your exsisting proje
 
 ## Categories based on the `Languages` and `Frameworks`
 
-### [Go programming language](./go/README.md)
+1. [Go programming language](./go/README.md)
