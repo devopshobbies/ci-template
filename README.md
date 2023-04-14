@@ -1,5 +1,14 @@
 # CI Templates
 
+<!-- BADGES -->
+<p align="center">
+  <img src="https://img.shields.io/github/stars/devopshobbies/ci-templates?style=for-the-badge">
+  <img src="https://img.shields.io/github/forks/devopshobbies/ci-templates?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/devopshobbies/ci-templates?style=for-the-badge">
+  <img src="https://img.shields.io/github/repo-size/devopshobbies/ci-templates?style=for-the-badge">
+
+</p>
+
 This repository is a good source of CI templates added and modified by users as a best practice. In this project we aimed to demonstrate how to use different CI/CD tools for various languages and frameworks.
 
 Let's grow together - DevOps Hobbies team.
