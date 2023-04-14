@@ -59,7 +59,7 @@ pipeline {
 
                 sh 'go version'
                 sh 'go get ./...'
-                sh 'docker build . -t devopshobbies/simple-ci'
+                sh 'docker build . -t your-username/your-app-name'
             }
         }
         stage('Release') {
@@ -69,7 +69,7 @@ pipeline {
                 // you have to create credentials of the type 'usernamePassword' for dockerhub
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                     sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-                    sh 'docker push devopshobbies/simple-ci'
+                    sh 'docker push your-username/your-app-name'
                 }
             }
         }
