@@ -1,0 +1,20 @@
+stages:
+  - lint
+  - compile
+  - test
+  - build
+  - release
+
+variables:
+  GO_IMAGE: "registry.snapp.tech/docker/golang:1.20-alpine"
+
+  REGISTRY_USERNAME: "your-username"
+  REGISTRY_ADDRESS: "registry.hub.docker.com"
+  REGISTRY_TOKEN: "your-registry-password"
+
+include:
+  - local: .gitlab/ci/templates/lint.gitlab-ci.yml
+  - local: .gitlab/ci/templates/compile.gitlab-ci.yml
+  - local: .gitlab/ci/templates/test.gitlab-ci.yml
+  - local: .gitlab/ci/templates/build.gitlab-ci.yml
+  - local: .gitlab/ci/templates/release.gitlab-ci.yml

@@ -1,0 +1,52 @@
+---
+lint:helm:heliograph:
+  stage: lint
+  script:
+    - |
+      for package in ./$HELM_CHARTS_DIR/*; do
+        if [ -d $package ]; then
+          helm lint $package
+        fi
+      done
+
+  only:
+    - tags
+  when: manual
+
+chart:helm:oci:
+  image:
+    name: alpine/helm:latest
+    entrypoint: [""]
+  stage: release
+  variables:
+    HELM_EXPERIMENTAL_OCI: 1
+  script:
+    - helm registry login -u ${RELEASE_CONTAINER_REGISTRY_USERNAME} -p ${RELEASE_CONTAINER_REGISTRY_PASSWORD} ${RELEASE_CONTAINER_REGISTRY_ADDRESS}
+    - helm chart save ${HELM_CHART} ${RELEASE_CONTAINER_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-chart
+    - helm chart push ${RELEASE_CONTAINER_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-chart
+  only:
+    - tags
+  when: manual
+
+chart:helm:push:
+  stage: release
+  image:
+    name: registry.snapp.tech/docker/helm:latest
+    entrypoint: [""]
+  variables:
+    HELM_REPO_PROJECT: "dispatching"
+    HELM_REPO_USER: "$DISPATCHING_HELM_REPO_USER"
+    HELM_REPO_PASS: "$DISPATCHING_HELM_REPO_PASS"
+  script:
+    # installation is handled in docker image
+    # - helm plugin install https://github.com/chartmuseum/helm-push.git
+    - helm repo add chartmuseum https://helm.snapp.tech/$HELM_REPO_PROJECT --username $HELM_REPO_USER --password $HELM_REPO_PASS
+    - |
+      for package in ./$HELM_CHARTS_DIR/*; do
+        if [ -d $package ]; then
+          helm cm-push $package chartmuseum
+        fi
+      done
+  only:
+    - tags
+  when: manual

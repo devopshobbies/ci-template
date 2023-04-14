@@ -1,0 +1,11 @@
+---
+build:
+  image: docker:latest
+  stage: build
+  script:
+    - ./.gitlab/ci/scripts/build.sh
+  artifacts:
+    paths: ['archived-build.tar']
+    expire_in: 1 week
+  dependencies:
+    - compile
